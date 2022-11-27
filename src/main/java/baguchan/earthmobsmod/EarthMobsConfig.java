@@ -19,13 +19,14 @@ public class EarthMobsConfig {
 		public final ForgeConfigSpec.IntValue cluckshroomSpawnRate;
 		public final ForgeConfigSpec.IntValue fancyChickenSpawnRate;
 		public final ForgeConfigSpec.IntValue duckSpawnRate;
+		public final ForgeConfigSpec.IntValue turkeySpawnRate;
 		public final ForgeConfigSpec.IntValue hornedSheepSpawnRate;
 		public final ForgeConfigSpec.IntValue boneSpiderSpawnRate;
 		public final ForgeConfigSpec.IntValue hyperRabbitSpawnRate;
 		public final ForgeConfigSpec.IntValue moobloomSpawnRate;
 		public final ForgeConfigSpec.IntValue moolipSpawnRate;
 		public final ForgeConfigSpec.IntValue jumboRabbitSpawnRate;
-
+		
 		public final ForgeConfigSpec.IntValue boulderingZombieSpawnRate;
 		public final ForgeConfigSpec.IntValue lobberZombieSpawnRate;
 
@@ -55,6 +56,9 @@ public class EarthMobsConfig {
 			duckSpawnRate = builder
 					.comment("Changed Duck SpawnRate. [0 ~ 100]")
 					.defineInRange("Duck SpawnRate", 8, 0, 100);
+			turkeySpawnRate = builder
+					.comment("Changed Turkey SpawnRate. [0 ~ 100]")
+					.defineInRange("Turkey SpawnRate", 10, 0, 100);
 			hornedSheepSpawnRate = builder
 					.translation(EarthMobsMod.MODID + ".config.hornedSheepSpawnRate")
 					.comment("Changed Horned Sheep SpawnRate. [0 ~ 100]")
