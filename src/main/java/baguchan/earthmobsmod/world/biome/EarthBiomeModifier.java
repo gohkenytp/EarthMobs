@@ -128,6 +128,12 @@ public class EarthBiomeModifier implements BiomeModifier {
 					builder.getMobSpawnSettings().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.JUMBO_RABBIT.get(), EarthMobsConfig.COMMON.jumboRabbitSpawnRate.get(), 3, 4));
 				}
 			}
+			
+			if (EarthMobsConfig.COMMON.turkeySpawnRate.get() > 0) {
+				if (biome.is(BiomeTags.IS_TAIGA)) {
+					builder.getMobSpawnSettings().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.TURKEY.get(), EarthMobsConfig.COMMON.turkeySpawnRate.get(), 2, 5));
+				}
+			}
 		}
 	}
 
