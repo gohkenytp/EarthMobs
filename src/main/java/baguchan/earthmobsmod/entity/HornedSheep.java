@@ -89,10 +89,10 @@ public class HornedSheep extends Sheep {
 			double d0 = (double) Mth.randomBetween(this.random, -0.2F, 0.2F);
 			double d1 = (double) Mth.randomBetween(this.random, 0.3F, 0.7F);
 			double d2 = (double) Mth.randomBetween(this.random, -0.2F, 0.2F);
-			ItemEntity itementity = new ItemEntity(this.level, vec3.x(), vec3.y(), vec3.z(), itemstack, d0, d1, d2);
-			this.level.addFreshEntity(itementity);
-			ItemEntity itementity2 = new ItemEntity(this.level, vec3.x(), vec3.y(), vec3.z(), itemstack, d0, d1, d2);
-			this.level.addFreshEntity(itementity2);
+			ItemEntity itementity = new ItemEntity(this.level(), vec3.x(), vec3.y(), vec3.z(), itemstack, d0, d1, d2);
+			this.level().addFreshEntity(itementity);
+			ItemEntity itementity2 = new ItemEntity(this.level(), vec3.x(), vec3.y(), vec3.z(), itemstack, d0, d1, d2);
+			this.level().addFreshEntity(itementity2);
 			return true;
 		}
 	}
