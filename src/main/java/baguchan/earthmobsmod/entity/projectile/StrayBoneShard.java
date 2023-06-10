@@ -43,18 +43,18 @@ public class StrayBoneShard extends BoneShard {
             ParticleOptions particleoptions = this.getParticle();
 
             for (int i = 0; i < 8; ++i) {
-                this.level.addParticle(particleoptions, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+                this.level().addParticle(particleoptions, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
         if (p_37402_ == 4) {
-            this.level.addParticle(ParticleTypes.SNOWFLAKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+            this.level().addParticle(ParticleTypes.SNOWFLAKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
         }
     }
 
     public void tick() {
         super.tick();
-        if (!this.level.isClientSide) {
-            this.level.broadcastEntityEvent(this, (byte) 4);
+        if (!this.level().isClientSide) {
+            this.level().broadcastEntityEvent(this, (byte) 4);
         }
     }
 
