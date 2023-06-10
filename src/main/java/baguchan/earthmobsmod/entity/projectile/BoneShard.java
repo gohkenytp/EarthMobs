@@ -74,7 +74,7 @@ public class BoneShard extends ThrowableItemProjectile {
 			double d2 = (double) (i >> 0 & 255) / 255.0D;
 
 			for (int j = 0; j < p_36877_; ++j) {
-				this.level.addParticle(ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), d0, d1, d2);
+				this.level().addParticle(ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), d0, d1, d2);
 			}
 
 		}
@@ -85,7 +85,7 @@ public class BoneShard extends ThrowableItemProjectile {
 			ParticleOptions particleoptions = this.getParticle();
 
 			for (int i = 0; i < 8; ++i) {
-				this.level.addParticle(particleoptions, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+				this.level().addParticle(particleoptions, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 			}
 		}
 
@@ -112,8 +112,8 @@ public class BoneShard extends ThrowableItemProjectile {
 
 	public void tick() {
 		super.tick();
-		if (this.level.isClientSide) {
-			if (this.onGround) {
+		if (this.level().isClientSide) {
+			if (this.onGround()) {
 			} else {
 				this.makeParticle(2);
 			}
@@ -194,8 +194,8 @@ public class BoneShard extends ThrowableItemProjectile {
 
 	protected void onHit(HitResult p_37488_) {
 		super.onHit(p_37488_);
-		if (!this.level.isClientSide) {
-			this.level.broadcastEntityEvent(this, (byte) 3);
+		if (!this.level().isClientSide) {
+			this.level().broadcastEntityEvent(this, (byte) 3);
 			this.playSound(SoundEvents.TURTLE_EGG_BREAK, 0.4F, 1.25F);
 			this.discard();
 		}
