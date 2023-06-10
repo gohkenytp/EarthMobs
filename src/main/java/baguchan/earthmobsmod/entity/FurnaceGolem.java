@@ -104,7 +104,7 @@ public class FurnaceGolem extends AbstractGolem {
             ++this.activeTime;
             this.checkFurnaceAttack(this.getBoundingBox(), this.getBoundingBox().inflate(2.0F));
 
-            if (this.activeTime >= 400 && this.onGround) {
+            if (this.activeTime >= 400 && this.onGround()) {
                 this.playSound(SoundEvents.FIRE_EXTINGUISH, 2.0f, 1.0f);
                 this.setFurnaceActive(false);
                 this.activeTime = 0;
@@ -116,9 +116,9 @@ public class FurnaceGolem extends AbstractGolem {
             int j = Mth.floor(this.getY() - (double) 0.2F);
             int k = Mth.floor(this.getZ());
             BlockPos pos = new BlockPos(i, j, k);
-            BlockState blockstate = this.level.getBlockState(pos);
+            BlockState blockstate = this.level().getBlockState(pos);
             if (!blockstate.isAir()) {
-                this.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate).setPos(pos), this.getX() + ((double) this.random.nextFloat() - 0.5D) * (double) this.getBbWidth(), this.getY() + 0.1D, this.getZ() + ((double) this.random.nextFloat() - 0.5D) * (double) this.getBbWidth(), 4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D, ((double) this.random.nextFloat() - 0.5D) * 4.0D);
+                this.level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate).setPos(pos), this.getX() + ((double) this.random.nextFloat() - 0.5D) * (double) this.getBbWidth(), this.getY() + 0.1D, this.getZ() + ((double) this.random.nextFloat() - 0.5D) * (double) this.getBbWidth(), 4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D, ((double) this.random.nextFloat() - 0.5D) * 4.0D);
             }
         }
 
@@ -126,7 +126,7 @@ public class FurnaceGolem extends AbstractGolem {
 
     protected void checkFurnaceAttack(AABB p_21072_, AABB p_21073_) {
         AABB aabb = p_21072_.minmax(p_21073_);
-        List<Entity> list = this.level.getEntities(this, aabb);
+        List<Entity> list = this.level().getEntities(this, aabb);
         if (!list.isEmpty()) {
             for (Entity entity : list) {
                 if (entity != this) {
@@ -176,7 +176,7 @@ public class FurnaceGolem extends AbstractGolem {
 
     public boolean doHurtTarget(Entity p_28837_) {
         this.attackAnimationTick = 10;
-        this.level.broadcastEntityEvent(this, (byte) 4);
+        this.level().broadcastEntityEvent(this, (byte) 4);
         float f = this.getAttackDamage();
         float f1 = (int) f > 0 ? f / 2.0F + (float) this.random.nextInt((int) f) : f;
         boolean flag = p_28837_.hurt(this.damageSources().mobAttack(this), f1);
@@ -251,7 +251,7 @@ public class FurnaceGolem extends AbstractGolem {
                     itemstack.shrink(1);
                 }
 
-                return InteractionResult.sidedSuccess(this.level.isClientSide);
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
         }
     }
