@@ -79,7 +79,7 @@ public class SkeletonWolf extends Wolf {
 	public InteractionResult mobInteract(Player p_30412_, InteractionHand p_30413_) {
 		ItemStack itemstack = p_30412_.getItemInHand(p_30413_);
 		Item item = itemstack.getItem();
-		if (this.level.isClientSide) {
+		if (this.level().isClientSide) {
 			boolean flag = this.isOwnedBy(p_30412_) || this.isTame() || itemstack.is(Tags.Items.BONES) && !this.isTame() && !this.isAngry();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {
@@ -108,9 +108,9 @@ public class SkeletonWolf extends Wolf {
 					this.navigation.stop();
 					this.setTarget((LivingEntity) null);
 					this.setOrderedToSit(true);
-					this.level.broadcastEntityEvent(this, (byte) 7);
+					this.level().broadcastEntityEvent(this, (byte) 7);
 				} else {
-					this.level.broadcastEntityEvent(this, (byte) 6);
+					this.level().broadcastEntityEvent(this, (byte) 6);
 				}
 
 				return InteractionResult.SUCCESS;
