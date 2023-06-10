@@ -74,7 +74,7 @@ public class BoneSpider extends Spider implements RangedAttackMob {
 	}
 
 	public void tick() {
-		if (!this.level.isClientSide && this.isAlive() && !this.isNoAi()) {
+		if (!this.level().isClientSide && this.isAlive() && !this.isNoAi()) {
 			if (this.isFreezeConverting()) {
 				--this.conversionTime;
 				if (this.conversionTime < 0) {
@@ -114,7 +114,7 @@ public class BoneSpider extends Spider implements RangedAttackMob {
 	protected void doFreezeConversion() {
 		this.convertTo(ModEntities.STRAY_BONE_SPIDER.get(), true);
 		if (!this.isSilent()) {
-			this.level.levelEvent((Player) null, 1048, this.blockPosition(), 0);
+			this.level().levelEvent((Player) null, 1048, this.blockPosition(), 0);
 		}
 
 	}
@@ -182,7 +182,7 @@ public class BoneSpider extends Spider implements RangedAttackMob {
     }
 
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
-		BoneShard bone = new BoneShard(this.level, this);
+		BoneShard bone = new BoneShard(this.level(), this);
 		double d1 = p_29912_.getX() - this.getX();
 		double d2 = p_29912_.getEyeY() - this.getEyeY();
 		double d3 = p_29912_.getZ() - this.getZ();
@@ -193,7 +193,7 @@ public class BoneSpider extends Spider implements RangedAttackMob {
                 bone.addEffect(new MobEffectInstance(mobEffectInstance.getEffect(), mobEffectInstance.getDuration() / 4, 0));
             }
         }
-        this.level.addFreshEntity(bone);
+        this.level().addFreshEntity(bone);
     }
 
     @Override
