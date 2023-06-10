@@ -49,7 +49,7 @@ public class MelonGolemHeadLayer extends RenderLayer<MelonGolem, SnowGolemModel<
 					p_117494_.translate(-0.5D, -0.5D, -0.5D);
 					blockrenderdispatcher.getModelRenderer().renderModel(p_117494_.last(), p_117495_.getBuffer(RenderType.outline(TextureAtlas.LOCATION_BLOCKS)), blockstate, bakedmodel, 0.0F, 0.0F, 0.0F, p_117496_, i);
 				} else {
-					minecraft.getItemRenderer().renderStatic(p_117497_, itemstack, ItemDisplayContext.HEAD, false, p_117494_, p_117495_, p_117497_.level, p_117496_, LivingEntityRenderer.getOverlayCoords(p_117497_, 0.0F), p_117497_.getId());
+					minecraft.getItemRenderer().renderStatic(p_117497_, itemstack, ItemDisplayContext.HEAD, false, p_117494_, p_117495_, p_117497_.level(), p_117496_, LivingEntityRenderer.getOverlayCoords(p_117497_, 0.0F), p_117497_.getId());
 				}
 
 				p_117494_.popPose();
