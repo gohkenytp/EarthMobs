@@ -10,7 +10,7 @@ import net.minecraft.tags.InstrumentTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -73,8 +73,8 @@ public class ModItems {
 	public static final RegistryObject<Item> FURNACE_GOLEM_SPAWNEGG = ITEMS.register("furnace_golem_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FURNACE_GOLEM, 14405058, 0x8F5846, (new Item.Properties())));
 
 	@SubscribeEvent
-	public static void registerCreativeTabsItem(CreativeModeTabEvent.BuildContents event) {
-		if (event.getTab() == CreativeModeTabs.SPAWN_EGGS) {
+	public static void registerCreativeTabsItem(BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
 			event.accept(CLUCK_SHROOM_SPAWNEGG);
 			event.accept(FANCY_CHICKEN_SPAWNEGG);
 			event.accept(WOOLY_COW_SPAWNEGG);
@@ -105,7 +105,7 @@ public class ModItems {
 			event.accept(MELON_GOLEM_SPAWNEGG);
 			event.accept(FURNACE_GOLEM_SPAWNEGG);
 		}
-		if (event.getTab() == CreativeModeTabs.INGREDIENTS) {
+		if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
 			event.accept(RUBY);
 			event.accept(SMELLY_EGG);
 			event.accept(FANCY_EGG);
@@ -118,19 +118,19 @@ public class ModItems {
 
 		}
 
-		if (event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+		if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
 			event.accept(MUD_BUCKET);
 			event.accept(TROPICAL_SLIME_BUCKET);
 			event.accept(TEACUP_PIG_POT);
 		}
-		if (event.getTab() == CreativeModeTabs.NATURAL_BLOCKS) {
+		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 			event.accept(ModBlocks.CARVED_MELON);
 			event.accept(ModBlocks.CARVED_MELON_SHOOT);
 			event.accept(ModBlocks.BUTTERCUP);
 			event.accept(ModBlocks.PINK_DAISY);
 		}
 
-		if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS) {
+		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
 			event.accept(ModBlocks.RUBY);
 		}
 	}
