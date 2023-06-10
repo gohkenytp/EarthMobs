@@ -76,8 +76,8 @@ public class CommonEvents {
 		ItemStack itemStack = event.getEntity().getItemInHand(hand);
 		BlockPos pos = event.getPos();
 
-		Level level = event.getEntity().level;
-		if (itemStack.getItem() instanceof ShearsItem && event.getEntity().level.getBlockState(pos).getBlock() == Blocks.MELON) {
+		Level level = event.getEntity().level();
+		if (itemStack.getItem() instanceof ShearsItem && event.getEntity().level().getBlockState(pos).getBlock() == Blocks.MELON) {
 			Direction direction = event.getHitVec().getDirection();
 			if (direction != Direction.DOWN && direction != Direction.UP) {
 				itemStack.hurtAndBreak(1, event.getEntity(), (p_29910_) -> {
@@ -143,7 +143,7 @@ public class CommonEvents {
 	public static void onLightning(EntityStruckByLightningEvent event) {
 		if (event.getEntity() instanceof Pig pig) {
 			if (event.getEntity().getType() != ModEntities.ZOMBIFIED_PIG.get()) {
-				ZombifiedPig zombifiedpig = ModEntities.ZOMBIFIED_PIG.get().create(event.getEntity().getLevel());
+				ZombifiedPig zombifiedpig = ModEntities.ZOMBIFIED_PIG.get().create(event.getEntity().level());
 				zombifiedpig.moveTo(pig.getX(), pig.getY(), pig.getZ(), pig.getYRot(), pig.getXRot());
 				zombifiedpig.setNoAi(pig.isNoAi());
 				zombifiedpig.setBaby(pig.isBaby());
@@ -154,7 +154,7 @@ public class CommonEvents {
 
 				zombifiedpig.setPersistenceRequired();
 				net.minecraftforge.event.ForgeEventFactory.onLivingConvert(pig, zombifiedpig);
-				event.getEntity().getLevel().addFreshEntity(zombifiedpig);
+				event.getEntity().level().addFreshEntity(zombifiedpig);
 				pig.discard();
 				event.setCanceled(true);
 			} else {
