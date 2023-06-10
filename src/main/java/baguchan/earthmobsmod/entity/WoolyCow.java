@@ -84,7 +84,7 @@ public class WoolyCow extends Cow implements Shearable, net.minecraftforge.commo
 	}
 
 	public void aiStep() {
-		if (this.level.isClientSide) {
+		if (this.level().isClientSide) {
 			this.eatAnimationTick = Math.max(0, this.eatAnimationTick - 1);
 		}
 
