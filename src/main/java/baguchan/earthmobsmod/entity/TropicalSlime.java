@@ -148,7 +148,7 @@ public class TropicalSlime extends Slime implements Bucketable {
 			p_28941_.setItemInHand(p_28942_, itemstack2);
 			SoundEvent soundevent = SoundEvents.BUCKET_EMPTY_FISH;
 			this.playSound(soundevent, 1.0F, 1.0F);
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else {
 			return this.isTiny() ? Bucketable.bucketMobPickup(p_28941_, p_28942_, this).orElse(super.mobInteract(p_28941_, p_28942_)) : super.mobInteract(p_28941_, p_28942_);
 		}
@@ -215,14 +215,14 @@ public class TropicalSlime extends Slime implements Bucketable {
 				for (int l = 0; l < listTag.size(); ++l) {
 					float f1 = ((float) (l % 2) - 0.5F) * f;
 					float f2 = ((float) (l / 2) - 0.5F) * f;
-					TropicalFish fish = EntityType.TROPICAL_FISH.create(this.level);
+					TropicalFish fish = EntityType.TROPICAL_FISH.create(this.level());
 					if (this.isPersistenceRequired()) {
 						fish.setPersistenceRequired();
 					}
 					fish.setPackedVariant(((CompoundTag) listTag.get(l)).getInt(TAG_FISH_VARIANT));
 					fish.setInvulnerable(this.isInvulnerable());
 					fish.moveTo(this.getX() + (double) f1, this.getY() + 0.5D, this.getZ() + (double) f2, this.random.nextFloat() * 360.0F, 0.0F);
-					this.level.addFreshEntity(fish);
+					this.level().addFreshEntity(fish);
 				}
 			}
 		}
@@ -448,7 +448,7 @@ public class TropicalSlime extends Slime implements Bucketable {
 				this.mob.setZza(0.0F);
 			} else {
 				this.operation = MoveControl.Operation.WAIT;
-				if (this.slime.isInWater() && !this.mob.isOnGround()) {
+				if (this.slime.isInWater() && !this.mob.onGround()) {
 
 					float f1 = (float) (this.speedModifier * this.mob.getAttributeValue(Attributes.MOVEMENT_SPEED));
 
@@ -459,7 +459,7 @@ public class TropicalSlime extends Slime implements Bucketable {
 					}
 					this.slime.setSpeed(Mth.lerp(2.0F, this.slime.getSpeed(), f1));
 
-				} else if (this.mob.isOnGround()) {
+				} else if (this.mob.onGround()) {
 					this.mob.setSpeed((float) (this.speedModifier * this.mob.getAttributeValue(Attributes.MOVEMENT_SPEED)));
 					if (this.jumpDelay-- <= 0) {
 						this.jumpDelay = this.slime.getJumpDelay();
@@ -494,7 +494,7 @@ public class TropicalSlime extends Slime implements Bucketable {
 		}
 
 		public boolean canUse() {
-			return this.slime.getTarget() == null && (this.slime.isOnGround() || this.slime.isInWater() || this.slime.isInLava() || this.slime.hasEffect(MobEffects.LEVITATION)) && this.slime.getMoveControl() instanceof TropicalSlime.SlimeMoveControl;
+			return this.slime.getTarget() == null && (this.slime.onGround() || this.slime.isInWater() || this.slime.isInLava() || this.slime.hasEffect(MobEffects.LEVITATION)) && this.slime.getMoveControl() instanceof TropicalSlime.SlimeMoveControl;
 		}
 
 		public void tick() {
